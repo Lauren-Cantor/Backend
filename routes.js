@@ -65,6 +65,25 @@ router.get('/productos', async (req, res) => {
   }
 });
 
+// Obtener un producto por su ID
+router.get('/productos/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await client.query('SELECT * FROM products WHERE id = $1', [id]);
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: 'Producto no encontrado' });
+    }
+
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error al obtener producto' });
+  }
+});
+
+
 // Crear producto (solo admin)
 router.post('/productos', async (req, res) => {
   const { product_code, description, material_id, initial_price, final_price, weight, supplier } = req.body;
