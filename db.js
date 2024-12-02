@@ -3,10 +3,10 @@ const { Client } = require('pg');
 
 const client = new Client({
     user: process.env.PGUSER,          // Reemplaza con tu nombre de usuario de PostgreSQL
-    host: PGHOST,
-    database: PGDATABASE,      // Nombre de tu base de datos
+    host: process.env.PGHOST,
+    database: process.env.PGDATABASE,      // Nombre de tu base de datos
     password: process.env.PGPASSWORD,    // Reemplaza con tu contraseña
-    port: 5432,                   // Puerto por defecto de PostgreSQL
+    port: process.env.PGPORT,                   // Puerto por defecto de PostgreSQL
 });
 
 client.connect()
