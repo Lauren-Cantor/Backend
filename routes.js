@@ -187,7 +187,7 @@ router.post('/materials', async (req, res) => {
 });
 
 // Actualizar un material existente (solo admin)
-router.patch('/materials/:id', async (req, res) => {
+router.put('/materials/:id', async (req, res) => {
   const { id } = req.params;
   const { material_name } = req.body;
   try {
